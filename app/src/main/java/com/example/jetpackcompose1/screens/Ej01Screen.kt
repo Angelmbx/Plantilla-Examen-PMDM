@@ -1,57 +1,43 @@
 package com.example.jetpackcompose1.screens.teoria
 
-import android.content.res.Configuration
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.runtime.*
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.jetpackcompose1.screens.Part1
+import com.example.jetpackcompose1.screens.Part2
+
+
+enum class Part {P1, P2}
 @Preview
 @Composable
 fun Screen1() {
 
-    when (LocalConfiguration.current.orientation) {
-        Configuration.ORIENTATION_PORTRAIT -> {
-            Box(Modifier.fillMaxSize(), Alignment.Center) {
-                Column(
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Text(text = "First item", Modifier.padding(15.dp)  .align(Alignment.Start))
-                    Text(text = "Second item",Modifier.padding(15.dp)  .align(Alignment.Start))
-                    Text(text = "Third item", Modifier.padding(15.dp)  .align(Alignment.Start))
-                }
+    Scaffold(
+        topBar = { TopAppBar(title = { Text(text = "Contadores") },
+                actions = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(imageVector = Icons.Filled.Refresh, contentDescription = "botón de refrescar")
+                    }
+                }) }
+    ) {
 
-            }
+        var part by rememberSaveable { mutableStateOf(Part.P1)} //variable de estado para determinar si esta en una o en otra
+        var numCounters by rememberSaveable { mutableStateOf(0)}
+
+
+        if (part == Part.P1) {
+            Part1(it)
         }
-
-        Configuration.ORIENTATION_LANDSCAPE -> {
-            Box(Modifier.fillMaxSize(), Alignment.Center) {
-                Column() {
-                    Text(text = "First item", Modifier.padding(15.dp)  .align(Alignment.Start))
-                    Text(text = "Second item",Modifier.padding(15.dp)  .align(Alignment.Start))
-                    Text(text = "Third item", Modifier.padding(15.dp)  .align(Alignment.Start))
-                }
-            }
+        else {
+         Part2(numCounters= numCounters, modifier = Modifier.padding(it))
         }
-        else -> throw RuntimeException()
-
-
     }
-
-
-
-    /*fun TextoItem(
-        texto: String,
-        modifier: Modifier,
-    ){ Text(text = texto,
-        Modifier
-            .padding(15.dp)
-            .align(Alignment.Start)
-    )*/
-
 }
+

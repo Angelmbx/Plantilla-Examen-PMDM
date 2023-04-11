@@ -30,9 +30,7 @@ fun MainScreen(navController: NavController) {
                 Button(onClick = { navController.navigate(route = Screens.Screen2.route) }) {
                     Text(text = "Ejercicio 2")
                 }
-                Button(onClick = { navController.navigate(route = Screens.Screen3.route) }) {
-                    Text(text = "Ejercicio 3")
-                }
+
             }
         }
 
@@ -45,9 +43,6 @@ fun MainScreen(navController: NavController) {
                    }
                    Button(onClick = { navController.navigate(route = Screens.Screen2.route) }) {
                        Text(text = "Ejercicio 2")
-                   }
-                   Button(onClick = { navController.navigate(route = Screens.Screen3.route) }) {
-                       Text(text = "Ejercicio 3")
                    }
                }
             }
