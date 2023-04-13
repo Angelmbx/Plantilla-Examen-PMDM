@@ -30,7 +30,7 @@ fun Screen1() {
     ) {
 
         if (numCounters==0){
-            Part1(it, numCounters)
+            Part1 (onNumCounterChange = { numCounters = it }, modifier = Modifier.padding(it))
         }
         else {
             Part2(numCounters= numCounters, modifier = Modifier.padding(it))
