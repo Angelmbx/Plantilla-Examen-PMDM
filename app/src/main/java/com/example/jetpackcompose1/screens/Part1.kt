@@ -22,7 +22,7 @@ fun Part1(it: PaddingValues, numCounters) {
         var text by rememberSaveable { mutableStateOf("") }
 
         TextField(value = text, onValueChange = { text = it })
-        Button(onClick = { numCounters = text.toInt()}) {
+        Button(onClick = { numCounters  = text.toInt()}) {
             Text(text = "Mostrar")
         }
 
