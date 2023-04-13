@@ -14,29 +14,26 @@ import com.example.jetpackcompose1.screens.Part1
 import com.example.jetpackcompose1.screens.Part2
 
 
-enum class Part {P1, P2}
 @Preview
 @Composable
 fun Screen1() {
 
+    var numCounters by rememberSaveable { mutableStateOf(0)}
+
     Scaffold(
         topBar = { TopAppBar(title = { Text(text = "Contadores") },
                 actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = { numCounters = 0 }) {
                         Icon(imageVector = Icons.Filled.Refresh, contentDescription = "botón de refrescar")
                     }
                 }) }
     ) {
 
-        var part by rememberSaveable { mutableStateOf(Part.P1)} //variable de estado para determinar si esta en una o en otra
-        var numCounters by rememberSaveable { mutableStateOf(0)}
-
-
-        if (part == Part.P1) {
-            Part1(it)
+        if (numCounters==0){
+            Part1(it, numCounters)
         }
         else {
-         Part2(numCounters= numCounters, modifier = Modifier.padding(it))
+            Part2(numCounters= numCounters, modifier = Modifier.padding(it))
         }
     }
 }
