@@ -38,7 +38,7 @@ fun Counter(modifier: Modifier = Modifier) {
         }
         Text(text = "$count", modifier= Modifier.padding(20.dp))
         Button(onClick = { count++}) {
-            Text(text ="Incrementar")
+            Text(text ="Incrementar") //c
         }
     }
 }
